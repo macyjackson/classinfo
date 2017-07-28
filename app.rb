@@ -29,18 +29,18 @@ end
 
 get '/display' do
 	#displays a roster of students in the database
-	student_info = []
-	studentlist = db.exec("SELECT * FROM students")
-	index = 0
-	studentlist.each do |student|
-		student_id = student['id']
-		student_firstname = student['firstname']
+	student_info = [] #creating empty array for student info to get pushed through later
+	studentlist = db.exec("SELECT * FROM students") #set variable equal to everything in student table
+	index = 0 #setting counter to zero so we can iterate array later
+	studentlist.each do |student| #iterating all the info within the table
+		student_id = student['id'] #setting student_id equal to id in the table
+		student_firstname = student['firstname'] #pulling out first name
 		student_lastname = student['lastname']
 		student_email = student['email']
-		student_info.push(studentlist[index])
-		index = index + 1
+		student_info.push(studentlist[index]) #pushing each record (using counter'index') into the array <<
+		index = index + 1 #increasing the counter for each record processed
 	end
 	
-	session[:student_info] = student_info
-	erb :display, locals: {student_info: student_info}
+	session[:student_info] = student_info #didn't really need this line
+	erb :display, locals: {student_info: student_info} 
 end

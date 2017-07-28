@@ -19,6 +19,7 @@ get '/' do
 end
 
 post '/studentinfo' do
+	#add new student to the database
 	firstname = params[:firstname]
 	lastname = params[:lastname]
 	email = params[:email]
@@ -27,6 +28,7 @@ post '/studentinfo' do
 end
 
 get '/display' do
+	#displays a roster of students in the database
 	student_info = []
 	studentlist = db.exec("SELECT * FROM students")
 	index = 0
